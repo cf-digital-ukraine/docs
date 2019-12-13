@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="description" content="Description">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/docs.css">
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="#/" class="active">ru</a></li>
+        <li><a href="#/en">en</a></li>
+    </ul>
+</nav>
+<div id="app"></div>
+<script>
+    window.$docsify = {
+        logo: 'assets/image/logo.svg',
+        homepage: 'readme.md',
+        auto2top: true,
+        loadSidebar: '_sidebar.md',
+        executeScript: true,
+        subMaxLevel: 4
+    }
+</script>
+<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+</body>
+</html>
