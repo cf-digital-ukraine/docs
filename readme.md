@@ -1,3 +1,8 @@
+####for install run  
+``npm i docsify-cli -g``
+#### then execute   
+``docsify init``
+``docsify serve``
 
 
 1. [Руководство по документации](https://docsify.js.org/#/quickstart)  
