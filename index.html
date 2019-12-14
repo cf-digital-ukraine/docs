@@ -8,7 +8,18 @@
     <meta name="description" content="Description">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/docs.css">
+
+    <!-- Theme: Defaults -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-defaults.css">
+    <!-- Theme: Simple -->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">-->
+    <!-- Theme: Simple Dark -->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">-->
+    <style>
+        *, *:focus, *:active, *:visited, *:focus-within {
+            outline: none !important;
+        }
+    </style>
 </head>
 <body>
 <nav>
@@ -25,9 +36,76 @@
         auto2top: true,
         loadSidebar: '_sidebar.md',
         executeScript: true,
-        subMaxLevel: 4
-    }
+        subMaxLevel: 3,
+        search: {
+            paths: [
+                '/',
+                '/dev/',
+                '/dev/front',
+                '/dev/front/intro',
+                '/dev/front/Front-End',
+            ],
+            depth: 5,
+            hideOtherSidebarContent: true
+        },
+        tabs: {
+            theme      : 'material',
+            persist    : true,      // default
+            sync       : true,      // default
+            tabComments: true,      // default
+            tabHeadings: true      // default
+        },
+        themeable: {
+            readyTransition : true, // default
+            responsiveTables: true  // default
+        },
+        flexibleAlerts: {
+            style: 'flat',
+            note: {
+                label: "Примечание"
+            },
+            tip: {
+                label: "Совет"
+            },
+            warning: {
+                label: "Предупреждение"
+            },
+            danger: {
+                label: "Опасно"
+            },
+            comment: {
+                label: "Комментарий",
+                icon: "fas fa-comment",
+                className: "info"
+            }
+        },
+
+        // call Prism.highlightAll() in vue hook
+        plugins: [
+            function (hook, vm) {
+                hook.doneEach(function (html) {
+                    Prism.highlightAll();
+                    console.log('mounted,', Prism)
+                })
+
+            }
+        ]
+    };
 </script>
-<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+<script defer src="assets/js/docsify.min.js"></script>
+<script defer src="assets/js/docsify-copy-code.min.js"></script>
+<script defer src="assets/js/docsify-tabs.js"></script>
+<script defer src="assets/js/search.min.js"></script>
+
+
+<script src="//unpkg.com/docsify-plugin-flexible-alerts"></script>
+<!-- docsify-themeable (latest v0.x.x) -->
+<script src="//cdn.jsdelivr.net/npm/docsify-themeable@0"></script>
+
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-tomorrow.min.css"/>-->
+<link rel="stylesheet" href="assets/css/prism-xonokai.css"/>
+<script src="//unpkg.com/prismjs/components/prism-php.min.js"></script>
+<script src="//unpkg.com/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>
 </html>
