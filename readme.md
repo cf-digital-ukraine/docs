@@ -93,7 +93,7 @@ function AjaxRequest(url) {
 @font-face {
   font-family: DroidSans;
   src: url(DroidSans.ttf);
-  unicode-range: U+000-5FF, U+1e00-1fff, U+2000-2300;
+  unicode-range: U+000-5FF, U+1e00-1fff, U+2000-2300, U+000-5FF, U+1e00-1fff, U+2000-2300, U+000-5FF, U+1e00-1fff, U+2000-2300, U+000-5FF, U+1e00-1fff, U+2000-2300;
 }
 
 h1.mystyle:lang(en) {

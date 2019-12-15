@@ -39,6 +39,16 @@
             right: auto;
             opacity: 1;
         }
+        body:not([data-platform^="Mac"]) * code:hover::-webkit-scrollbar{
+            width: 5px;
+            height: 5px;
+        }
+        body:not([data-platform^="Mac"]) * code:hover::-webkit-scrollbar-thumb{
+            background: #ffffff;
+        }
+        body:not([data-platform^="Mac"]) * code:hover::-webkit-scrollbar-track{
+            background: hsla(var(--mono-hue), var(--mono-saturation), 50%, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -107,10 +117,21 @@
         },
         plugins: [
             function (hook, vm) {
+                var footer = [
+                    '<footer style="margin-top: 10vw;">',
+                    '<p style="display:flex;width: 100%;"><a href="https://cf.digital">Documentation by CF.Digital team</a>',
+                    '<a style="margin-left: auto;" href="https://fb.com/Woloja">And build by Woloja</a></p>',
+                    '</footer>'
+                ].join('');
+
                 hook.doneEach(function (html) {
                     Prism.highlightAll();
                     console.log('mounted,', Prism)
-                })
+                });
+
+                hook.afterEach(function(html) {
+                    return html + footer;
+                });
 
             }
         ]
