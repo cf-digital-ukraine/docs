@@ -17,20 +17,45 @@ docsify serve
 3. [AmazonWS Deploy - документация](https://docsify.js.org/#/deploy?id=aws-amplify)
 
 #### Примеры разметки в корне ``/readme.md``
-
 <!-- tabs:start -->
 
-#### ** English **
+#### ** Quotes and Alerts **
+<br>
+<br>
 
-Hello!
+>[!NOTE]
+>Lorem ipsum dolor sit amet, consectetur adipiscing elit
 
-#### ** French **
+<br>
 
-Bonjour!
+>[!TIP]
+>Lorem ipsum dolor sit amet, consectetur adipiscing elit
 
-#### ** Italian **
+<br>
 
-Ciao!
+>Lorem ipsum dolor sit amet, consectetur adipiscing elit
+>>[!DANGER]Lorem ipsum dolor sit amet, consectetur adipiscing elit
+>  
+>Lorem ipsum dolor sit amet, consectetur adipiscing elit
+
+<br>
+
+>[!WARNING]
+>Lorem ipsum dolor sit amet, consectetur adipiscing elit
+
+<br>
+
+>[!COMMENT]
+>Lorem ipsum dolor sit amet, consectetur adipiscing elit
+
+<br>
+
+#### ** Tables **
+
+First Header|Second Header|Second Header|Second Header
+-|-|-|-
+Content Cell|Content Cell|Content Cell|Content Cell
+Content Cell  | Content Cell  | Content Cell  | Content Cell
 
 #### ** javascript **
 
@@ -41,17 +66,22 @@ var globalVar;
  * @param url the url for the request<p/>
  */
 function AjaxRequest(url) {
-  function local() {}
-  var urls = [ "www.cnn.com", 5, globalVar];
-  this.request = new XMLHttpRequest();
-  url = url.replace(/^\s*(.*)/, "$1"); // skip leading whitespace
-  /* check the url to be in urls */
-  this.foo = new function() {};
-  foo();
+    url = url.replace(/^\s*(.*)/, "$1"); // skip leading whitespace
 
-  var hello = () => console.log("hello")}
+    var urls = [ "www.cnn.com", 5, globalVar, url];
+    function local() {
+        console.log(urls);
+    }
+    this.request = new XMLHttpRequest();
 
+    this.foo = new function() {
+        local();
+    };
+    foo();
+    
+    var hello = () => console.log("hello")}
     class NameClass {
+        
     }
 ```
 
@@ -81,33 +111,16 @@ $contents = 'dsadhjsadhjas';
 $heredoc = <<< HEREDOC_ID
 some $contents
 HEREDOC_ID;
+//HEREDOC_ID;
 
 function foo() {
    $a = [0, 1, 2];
    return SomeClass::$shared;
 }
 ```
-
-
-
-
 <!-- tabs:end -->
 
 
->[!NOTE] 
->Lorem ipsum dolor sit amet, consectetur adipiscing elit
-
->[!TIP]
->Lorem ipsum dolor sit amet, consectetur adipiscing elit
-
->[!DANGER]
->Lorem ipsum dolor sit amet, consectetur adipiscing elit
-
->[!WARNING]
->Lorem ipsum dolor sit amet, consectetur adipiscing elit
-
->[!COMMENT]
->Lorem ipsum dolor sit amet, consectetur adipiscing elit
 
 
 

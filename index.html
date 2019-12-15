@@ -10,14 +10,34 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
     <!-- Theme: Defaults -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-defaults.css">
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-defaults.css">-->
     <!-- Theme: Simple -->
 <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">-->
     <!-- Theme: Simple Dark -->
-<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
+    <link rel="stylesheet" href="assets/css/prism-xonokai.css"/>
     <style>
         *, *:focus, *:active, *:visited, *:focus-within {
             outline: none !important;
+        }
+        .sidebar-nav li>a[href^="#/"]:not([href*="?id="]), .sidebar-nav li>a[href^="#/"]:not([href*="?id="]) ~ ul a{
+            font-size: 12px;
+            padding-left: 15px;
+        }
+        body .sidebar{
+            padding: 0 .75vw;
+        }
+        .sidebar-nav ul ul, .sidebar nav ul ul{
+            margin-left: 1vw;
+        }
+        .markdown-section pre[data-lang]::after{
+            padding: 1px 15px;
+            background: #ffffff;
+            color: #000000;
+            top: 0;
+            left: 0;
+            right: auto;
+            opacity: 1;
         }
     </style>
 </head>
@@ -41,7 +61,7 @@
             paths: [
                 '/',
                 '/dev/',
-                '/dev/front',
+                '/dev/front/',
                 '/dev/front/intro',
                 '/dev/front/Front-End',
             ],
@@ -80,7 +100,11 @@
             }
         },
 
-        // call Prism.highlightAll() in vue hook
+        copyCode: {
+            buttonText : 'Копировать',
+            errorText  : 'Error',
+            successText: 'Готово!'
+        },
         plugins: [
             function (hook, vm) {
                 hook.doneEach(function (html) {
@@ -92,10 +116,12 @@
         ]
     };
 </script>
+
 <script defer src="assets/js/docsify.min.js"></script>
 <script defer src="assets/js/docsify-copy-code.min.js"></script>
 <script defer src="assets/js/docsify-tabs.js"></script>
 <script defer src="assets/js/search.min.js"></script>
+<script defer src="assets/js/prism-php.min.js"></script>
 
 
 <script src="//unpkg.com/docsify-plugin-flexible-alerts"></script>
@@ -104,8 +130,6 @@
 
 
 <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-tomorrow.min.css"/>-->
-<link rel="stylesheet" href="assets/css/prism-xonokai.css"/>
-<script src="//unpkg.com/prismjs/components/prism-php.min.js"></script>
 <script src="//unpkg.com/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>
 </html>
