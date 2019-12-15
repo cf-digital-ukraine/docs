@@ -49,6 +49,17 @@
         body:not([data-platform^="Mac"]) * code:hover::-webkit-scrollbar-track{
             background: hsla(var(--mono-hue), var(--mono-saturation), 50%, 0.2);
         }
+        .markdown-section th:nth-child(2):last-child,
+        .markdown-section td:nth-child(2):last-child {
+            border-left: 1px solid var(--table-cell-border-color);
+        }
+        .markdown-section td{
+            line-height: 1.2;
+            font-size: 14px;
+        }
+        .markdown-section a{
+            color: var(--navbar-root-color--active);
+        }
     </style>
 </head>
 <body>

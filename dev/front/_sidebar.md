@@ -4,6 +4,7 @@
         * [**📁 Back-End**](/dev/back/Back-End.md)
         * [**📂 Front-End**](/dev/front/)
             - [📃 Вступление](/dev/front/intro.md)
-            - [📃 Шаблон](/dev/front/Front-End.md)
+            - [📃 Шаблон](/dev/front/template.md)
+            - [📃 Структура](/dev/front/structure.md)
     * [**📁 Рекомендации по проекту**](/support/)
     * [**📁 User guides**](/support/)
