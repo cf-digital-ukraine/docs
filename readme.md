@@ -1,13 +1,13 @@
 #### for install run  
-```shell
+```terminal
 npm i docsify-cli -g
 ```
 
 #### then execute  
-```shell
+```terminal
 docsify init
 ```  
-```shell
+```terminal
 docsify serve
 ```
 
