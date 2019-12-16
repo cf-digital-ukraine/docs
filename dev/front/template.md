@@ -39,41 +39,41 @@ Or execute the command `npm install *package-name* -S` in the terminal
 ---
 ### Обязательная структура каталолов
 <sup>If necessary, the structure must be expanded</sup>
-<pre>📁root
-├── 📁public
+<pre>📁 root
+├── 📁 public
 │   ├── *.html
 │   └── index.html
-├── 📁resources
-│   └── 📁fonts
-│   │   └── 📁bold  
-│   │   │   ├── font-name.eot  
-│   │   │   ├── font-name.svg  
-│   │   │   ├── font-name.ttf  
-│   │   │   ├── font-name.woff  
-│   │   │   └── font-name.woff2  
+├── 📁 resources
+│   └── 📁 fonts
+│   │   └── 📁 bold
+│   │   │   ├── font-name.eot
+│   │   │   ├── font-name.svg
+│   │   │   ├── font-name.ttf
+│   │   │   ├── font-name.woff
+│   │   │   └── font-name.woff2
 │   │   ...
-│   │   └── 📁medium  
-│   │       ├── font-name.eot  
-│   │       ├── font-name.svg  
-│   │       ├── font-name.ttf  
-│   │       ├── font-name.woff  
-│   │       └── font-name.woff2  
-│   ├── 📁image
-│   │   ├── 📁folder  
-│   │   │   ├── ...  
-│   │   │   └── *.jpg|.svg|.png 
-│   │   ├── ...  
-│   │   └── *.jpg|.svg|.png 
-│   ├── 📁sass
-│   │   ├── 📁infoblock  
+│   │   └── 📁 medium
+│   │       ├── font-name.eot
+│   │       ├── font-name.svg
+│   │       ├── font-name.ttf
+│   │       ├── font-name.woff
+│   │       └── font-name.woff2
+│   ├── 📁 image
+│   │   ├── 📁 folder
 │   │   │   ├── ...
-│   │   │   └── *.sass 
-│   │   ├── 📁pages  
+│   │   │   └── *.jpg|.svg|.png
+│   │   ├── ...
+│   │   └── *.jpg|.svg|.png
+│   ├── 📁 sass
+│   │   ├── 📁 infoblock
 │   │   │   ├── ...
-│   │   │   └── *.sass  
-│   │   ├── 📁elements  
+│   │   │   └── *.sass
+│   │   ├── 📁 pages
 │   │   │   ├── ...
-│   │   │   └── *.sass 
+│   │   │   └── *.sass
+│   │   ├── 📁 elements
+│   │   │   ├── ...
+│   │   │   └── *.sass
 │   │   ├── _default.sass
 │   │   ├── _fonts.sass
 │   │   ├── _functions.sass
@@ -81,8 +81,8 @@ Or execute the command `npm install *package-name* -S` in the terminal
 │   │   ├── _variables.sass
 │   │   ├── app.sass
 │   │   └── polyfill.sass
-│   ├── 📁js
-│   │   ├── 📁_system-classes
+│   ├── 📁 js
+│   │   ├── 📁 _system-classes
 │   │   │   ├── css
 │   │   │   ├── AxiosGet.js
 │   │   │   ├── ...
@@ -91,7 +91,7 @@ Or execute the command `npm install *package-name* -S` in the terminal
 │   │   ├── polyfill.js
 │   │   ├── system.js
 │   │   └── app.js
-│   └── 📁for-remove
+│   └── 📁 for-remove
 │       ├── ...
 │       └── ***.ext
 ├── .gitignore

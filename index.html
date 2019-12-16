@@ -8,7 +8,59 @@
     <meta name="description" content="Description">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/docs.css">
+
+    <!-- Theme: Defaults -->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-defaults.css">-->
+    <!-- Theme: Simple -->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">-->
+    <!-- Theme: Simple Dark -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
+    <link rel="stylesheet" href="assets/css/prism-xonokai.css"/>
+    <style>
+        *, *:focus, *:active, *:visited, *:focus-within {
+            outline: none !important;
+        }
+        .sidebar-nav li>a[href^="#/"]:not([href*="?id="]), .sidebar-nav li>a[href^="#/"]:not([href*="?id="]) ~ ul a{
+            font-size: 12px;
+            padding-left: 15px;
+        }
+        body .sidebar{
+            padding: 0 .75vw;
+        }
+        .sidebar-nav ul ul, .sidebar nav ul ul{
+            margin-left: 1vw;
+        }
+        .markdown-section pre[data-lang]::after{
+            padding: 1px 15px;
+            background: #ffffff;
+            color: #000000;
+            top: 0;
+            left: 0;
+            right: auto;
+            opacity: 1;
+        }
+        body:not([data-platform^="Mac"]) * code:hover::-webkit-scrollbar{
+            width: 5px;
+            height: 5px;
+        }
+        body:not([data-platform^="Mac"]) * code:hover::-webkit-scrollbar-thumb{
+            background: #ffffff;
+        }
+        body:not([data-platform^="Mac"]) * code:hover::-webkit-scrollbar-track{
+            background: hsla(var(--mono-hue), var(--mono-saturation), 50%, 0.2);
+        }
+        .markdown-section th:nth-child(2):last-child,
+        .markdown-section td:nth-child(2):last-child {
+            border-left: 1px solid var(--table-cell-border-color);
+        }
+        .markdown-section td{
+            line-height: 1.2;
+            font-size: 14px;
+        }
+        .markdown-section a{
+            color: var(--navbar-root-color--active);
+        }
+    </style>
 </head>
 <body>
 <nav>
@@ -25,9 +77,91 @@
         auto2top: true,
         loadSidebar: '_sidebar.md',
         executeScript: true,
-        subMaxLevel: 4
-    }
+        subMaxLevel: 3,
+        search: {
+            paths: [
+                '/',
+                '/dev/',
+                '/dev/front/',
+                '/dev/front/intro',
+                '/dev/front/Front-End',
+            ],
+            depth: 5,
+            hideOtherSidebarContent: true
+        },
+        tabs: {
+            theme      : 'material',
+            persist    : true,      // default
+            sync       : true,      // default
+            tabComments: true,      // default
+            tabHeadings: true      // default
+        },
+        themeable: {
+            readyTransition : true, // default
+            responsiveTables: true  // default
+        },
+        flexibleAlerts: {
+            style: 'flat',
+            note: {
+                label: "Примечание"
+            },
+            tip: {
+                label: "Совет"
+            },
+            warning: {
+                label: "Предупреждение"
+            },
+            danger: {
+                label: "Опасно"
+            },
+            comment: {
+                label: "Комментарий",
+                icon: "fas fa-comment",
+                className: "info"
+            }
+        },
+
+        copyCode: {
+            buttonText : 'Копировать',
+            errorText  : 'Error',
+            successText: 'Готово!'
+        },
+        plugins: [
+            function (hook, vm) {
+                var footer = [
+                    '<footer style="margin-top: 10vw;">',
+                    '<p style="display:flex;width: 100%;"><a href="https://cf.digital">Documentation by CF.Digital team</a>',
+                    '<a style="margin-left: auto;" href="https://fb.com/Woloja">And build by Woloja</a></p>',
+                    '</footer>'
+                ].join('');
+
+                hook.doneEach(function (html) {
+                    Prism.highlightAll();
+                    console.log('mounted,', Prism)
+                });
+
+                hook.afterEach(function(html) {
+                    return html + footer;
+                });
+
+            }
+        ]
+    };
 </script>
-<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+
+<script defer src="assets/js/docsify.min.js"></script>
+<script defer src="assets/js/docsify-copy-code.min.js"></script>
+<script defer src="assets/js/docsify-tabs.js"></script>
+<script defer src="assets/js/search.min.js"></script>
+<script defer src="assets/js/prism-php.min.js"></script>
+
+
+<script src="//unpkg.com/docsify-plugin-flexible-alerts"></script>
+<!-- docsify-themeable (latest v0.x.x) -->
+<script src="//cdn.jsdelivr.net/npm/docsify-themeable@0"></script>
+
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-tomorrow.min.css"/>-->
+<script src="//unpkg.com/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>
 </html>

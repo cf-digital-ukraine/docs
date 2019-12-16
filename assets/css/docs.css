@@ -14,6 +14,10 @@
     font-family: Roboto, sans-serif;
 }
 
+*, *:focus, *:active, *:visited, *:focus-within {
+    outline: none !important;
+}
+
 body:not(.ready) {
     overflow: hidden;
     width: 100%;
@@ -790,7 +794,7 @@ section.cover blockquote > p > a:hover {
 }
 
 .markdown-section code, .markdown-section pre {
-    background-color: #f8f8f8;
+    background-color: #54575a;
     font-family: Roboto Mono, Monaco, courier, monospace
 }
 
@@ -800,7 +804,7 @@ section.cover blockquote > p > a:hover {
     line-height: 1.5rem;
     margin: 1.2em 0;
     overflow: auto;
-    padding: 0 1.4rem;
+    padding: 2vw;
     position: relative;
     word-wrap: normal
 }
@@ -849,11 +853,23 @@ section.cover blockquote > p > a:hover {
     color: var(--theme-color, #42b983)
 }
 
-.token.function, .token.keyword {
-    color: #e96900
+.token.function {
+    color: #FFC66D;
 }
 
-.token.atrule, .token.regex, .token.statement {
+.token.keyword {
+    color: #CC7832;
+}
+
+.token.atrule {
+    color: #22a2c9
+}
+
+.token.regex {
+    color: #22a2c9
+}
+
+.token.statement {
     color: #22a2c9
 }
 
@@ -889,9 +905,9 @@ section.cover blockquote > p > a:hover {
 .markdown-section pre > code {
     -moz-osx-font-smoothing: initial;
     -webkit-font-smoothing: initial;
-    background-color: #f8f8f8;
-    border-radius: 2px;
-    color: #525252;
+    border-radius: 3px;
+    color: #ffffff;
+    background-color: #313335;
     display: block;
     font-family: Roboto Mono, Monaco, courier, monospace;
     font-size: .8rem;
@@ -899,7 +915,7 @@ section.cover blockquote > p > a:hover {
     margin: 0 2px;
     max-width: inherit;
     overflow: inherit;
-    padding: 2.2em 5px;
+    padding: 1vw 5px;
     white-space: inherit
 }
 
