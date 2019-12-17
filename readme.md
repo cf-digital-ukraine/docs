@@ -5,9 +5,6 @@ npm i docsify-cli -g
 
 #### then execute  
 ```terminal
-docsify init
-```  
-```terminal
 docsify serve
 ```
 
