@@ -1,3 +1,5 @@
+[repository](https://github.com/cf-digital-ukraine/docs)
+
 #### for install run  
 ```terminal
 npm i docsify-cli -g
@@ -5,7 +7,7 @@ npm i docsify-cli -g
 
 #### then execute  
 ```terminal
-docsify serve
+docsify serve docs
 ```
 
 
