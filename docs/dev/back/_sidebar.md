@@ -1,5 +1,5 @@
 
-* [📁 Home page](/readme.md)
+* [📁 Home page](/)
     * [**📁 Разработка**](/dev/)
         * [**📂 Back-End**](/dev/back/Back-End.md)
         * [**📁 Front-End**](/dev/front/)
