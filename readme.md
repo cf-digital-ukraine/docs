@@ -1,4 +1,7 @@
 #### for install run  
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/cf-digital-ukraine/docs.svg)](https://greenkeeper.io/)
+
 ```terminal
 npm i docsify-cli -g
 ```
