@@ -5,6 +5,7 @@
         * [**📂 Front-End**](/dev/front/)
             - [📃 Вступление](/dev/front/intro.md)
             - [📃 Описание шаблона](/dev/front/template.md)
+            - [📃 HTML-шаблон](/dev/front/html.md)
             - [📃 Структура проекта](/dev/front/structure.md)
     * [**📁 Рекомендации по проекту**](/support/)
     * [**📁 User guides**](/support/)
