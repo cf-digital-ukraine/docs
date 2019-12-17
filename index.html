@@ -60,6 +60,9 @@
         .markdown-section a{
             color: var(--navbar-root-color--active);
         }
+        .sidebar-nav>ul>li>ul>li>ul>li>a:before{
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -79,13 +82,6 @@
         executeScript: true,
         subMaxLevel: 3,
         search: {
-            paths: [
-                '/',
-                '/dev/',
-                '/dev/front/',
-                '/dev/front/intro',
-                '/dev/front/Front-End',
-            ],
             depth: 5,
             hideOtherSidebarContent: true
         },
@@ -154,7 +150,6 @@
 <script defer src="assets/js/docsify-tabs.js"></script>
 <script defer src="assets/js/search.min.js"></script>
 <script defer src="assets/js/prism-php.min.js"></script>
-
 
 <script src="//unpkg.com/docsify-plugin-flexible-alerts"></script>
 <!-- docsify-themeable (latest v0.x.x) -->

@@ -1,44 +1,55 @@
 
 
-### Стандартний шаблон CF.Digital
+## Стандартний шаблон CF.Digital
 
 [![Build Status](https://travis-ci.com/cf-digital-ukraine/default-html-template.svg?branch=master)](https://travis-ci.com/cf-digital-ukraine/default-html-template) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/43d32cd89e5e42dabcef8c0ad6aeb5a7)](https://www.codacy.com/app/cf-digital-ukraine/default-html-template?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=cf-digital-ukraine/default-html-template&amp;utm_campaign=Badge_Grade) [![Greenkeeper badge](https://badges.greenkeeper.io/cf-digital-ukraine/default-html-template.svg)](https://greenkeeper.io/) [![devDependency Status](https://david-dm.org/cf-digital-ukraine/default-html-template/dev-status.svg)](https://david-dm.org/cf-digital-ukraine/default-html-template#info=devDependencies) [![Dependency Status](https://david-dm.org/cf-digital-ukraine/default-html-template.svg)](https://david-dm.org/cf-digital-ukraine/default-html-template)
 
 
 - Webpack расширен пакетом "laravel-mix" и его конфигурация отличаеться от стандартной.
 - Шаблон предназначен как для верстки на готовой системе, так и для чистой верстке на HTML.
-- Перед началом разработки, необходимо настроить **webpack.mix.js**, в зависимости от того где ведеться разработка:
-  - _Пути файлов и директорий_  
-  - _Очистка не используемых параметров_  
-  - _Если необходимо, обновить модули и зависимости_  
+- Перед началом разработки, необходимо настроить `webpack.mix.js`, в зависимости от того где ведеться разработка:
+  - _Пути файлов и директорий;_  
+  - _Очистка не используемых параметров;_  
+  - _Если необходимо, обновить модули и зависимости;_  
  
-- More information about dependencies is in the file [package](./package.json)  
-- По умолчанию webpack prodaction (npm run prod command) собирает:  
-  - _JavaScript is compatible with "ES6 <" - browsers_  
-  - _postCss minimizes and groups mediaQueries with logic: (min-width) - to increase, (max-width) - to decrease_  
+- Больше информации по зависимостям пакетов можно найти в файле `package.json`  
+- По умолчанию webpack production `npm run prod` собирает:  
+  - _JavaScript совместимый с старыми версиями браузеров которые не поддерживают "ES6";_  
+  - _postCss минимизация и групировка медиа запросов(адаптив) по такой логике:
+    - (min-width) - по возрастанию;
+    - (max-width) - по убыванию;  
 
-- По умолчанию webpack development (npm run dev / watch) performs a similar function, except:
-  - _JavaScript ES6 +, enabled soucemap, does not delete comments and console._  
+- По умолчанию webpack development `npm run watch` выполняет:
+  - _Собирает JavaScript совместимый только с ES6 и выше, включенный soucemap для кода._  
+  - _CSS аналогичен production версии кроме минимизации_
 
-### Установка
 
-Must be installed [Node.js with npm 6+](https://nodejs.org/uk/download/)  
-Teams run in the terminal - the root of [package](./package.json)  
-To download all development dependencies:
+## Установка
+
+Для установки пакета на комьютере должен біть установлен [Node.js with npm 6+](https://nodejs.org/uk/download/)  
+Команды выполняются в терминале, с корня директории где расположен `package.json`  
+Для загрузки всех зависимостей, выполнить:
 ```shell
 npm install
 ```
-To start file listeners:
+Для запуска слушателя файлов, выполнить:
 ```shell
 npm run watch
 ```
   
-To install the library, you must add it to the dependent dependencies section of the [package](./package.json), and then `run npm install`.
-Or execute the command `npm install *package-name* -S` in the terminal
+Для установки библиотека, вы должны добавить ее в раздер зависимотей в файле `package.json`, и выполнить `run npm install`.
+Или выполнить в терминале команду `npm install *package-name* -S`  
+Названия пакетов можно найти на [оффициальном сайте](https://www.npmjs.com/)  
 
----
-### Обязательная структура каталолов
-<sup>If necessary, the structure must be expanded</sup>
+
+## Обязательная структура каталолов
+
+Приведенная структура актуальна для верстки на HTML,
+в случае если разработка сразу ведется на развернутой системме DeltaCMS,
+необходимо переписать пути сборки файлов в `webpack.mix.js`.
+ 
+>[!NOTE]Структура дирректорий может меняться и не является обязательной, но при изменении, всегда нужно следить чтобы все пути были прописаны в `webpack.mix.js`
+
 <pre>📁 root
 ├── 📁 public
 │   ├── *.html
@@ -99,3 +110,29 @@ Or execute the command `npm install *package-name* -S` in the terminal
 ├── webpack.mix.js
 └── mix-manifest.json
 </pre>
+
+## Настройка и конфигурация `webpack.mix.js`
+
+
+При необходимости, детальную документацию можно найти на [оффициальном сайте](https://laravel.com/docs/6.x/mix).  
+
+Для сборки проекта под DeltaCMS ключивыми параметрами являются:
+
+```javascript
+mix.version();
+```
+В конец подключенных файлов которые собираются, добавляется информация о версии.
+
+```javascript
+mix.extract([
+    'jquery'
+    //...
+    // Масив библиотек который при сборке
+    // выносятся в отдельный файл vendor.js.
+]);
+```
+В резульстате работы медота в корень `./public/js` будет вынесено 2 файла:
+ - manifest.js  
+ - vendor.js  
+ 
+Названия ставятся такие же, как при подключении в `package.json`  

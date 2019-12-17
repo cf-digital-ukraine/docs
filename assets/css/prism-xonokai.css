@@ -43,6 +43,7 @@ pre[class*="language-"] {
 pre[class*="language-"] code {
 	white-space: pre;
 	display: block;
+	max-height: 370px;
 }
 
 :not(pre)>code[class*="language-"] {
