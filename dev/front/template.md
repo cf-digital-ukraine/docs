@@ -113,26 +113,30 @@ npm run watch
 
 ## Настройка и конфигурация `webpack.mix.js`
 
+При необходимости, детальную документацию по laravel-mix можно найти на [оффициальном сайте](https://laravel.com/docs/6.x/mix).  
+Изменение конфигурации webpack производиться [методом laravel-mix](https://laravel.com/docs/6.x/mix#custom-webpack-configuration)
+и доступна на [оффициальном сайте](https://webpack.js.org/configuration/).
 
-При необходимости, детальную документацию можно найти на [оффициальном сайте](https://laravel.com/docs/6.x/mix).  
-
-Для сборки проекта под DeltaCMS ключивыми параметрами являются:
+#### Для сборки проекта под DeltaCMS ключивыми параметрами являются:
 
 ```javascript
 mix.version();
 ```
-В конец подключенных файлов которые собираются, добавляется информация о версии.
+Добавляет в подключение информацию о версии файла.
+
+<br>
 
 ```javascript
-mix.extract([
+var arrayToExtract = [
     'jquery'
     //...
     // Масив библиотек который при сборке
     // выносятся в отдельный файл vendor.js.
-]);
+];
+mix.extract(arrayToExtract);
 ```
 В резульстате работы медота в корень `./public/js` будет вынесено 2 файла:
- - manifest.js  
- - vendor.js  
+ - manifest.js - служебный файл **webpack.js**
+ - vendor.js - в файл выносятся все библиотеки которые прописаны в массиве `arrayToExtract`  
  
 Названия ставятся такие же, как при подключении в `package.json`  

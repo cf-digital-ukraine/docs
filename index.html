@@ -74,6 +74,7 @@
 </nav>
 <div id="app"></div>
 <script>
+
     window.$docsify = {
         logo: 'assets/image/logo.svg',
         homepage: 'readme.md',
@@ -133,7 +134,7 @@
 
                 hook.doneEach(function (html) {
                     Prism.highlightAll();
-                    console.log('mounted,', Prism)
+                    console.log('mounted,', Prism);
                 });
 
                 hook.afterEach(function(html) {
@@ -143,6 +144,7 @@
             }
         ]
     };
+
 </script>
 
 <script defer src="assets/js/docsify.min.js"></script>
