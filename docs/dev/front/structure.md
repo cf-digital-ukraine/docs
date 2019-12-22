@@ -49,7 +49,7 @@
 
 
 #### Зарезервированная переменная `site`
-Приведенный ниже скрипт вноситься в самый конец тега `<head>`.
+Приведенный ниже скрипт расположить перед закрытием тега `<head>`.
 ```javascript
 <script>
     window.site = {
@@ -65,7 +65,9 @@
 </script>
 ```
 >[!DANGER]
-Здесь объявляется объект ``site`` который в дальнейшем будет использован для быстрого доступа к самым частым значениям. Этот объект зарезервирован системой, и его изменение приведет к полному отказу работы.
+Здесь объявляется объект ``site`` который в дальнейшем будет использован для
+>быстрого доступа к самым частым значениям. Этот объект зарезервирован системой,
+>и его изменение приведет к полному отказу работы.
 Объект необходимо наполнять нужными вам значениями, но не переписывать существующие:  
 - `site.language`
 - `site.theme`
@@ -75,15 +77,18 @@
 - `site.checkout`
 
 
-
-
-### system.js
+### system.js - системный
 
 Расположение `resources/builder-resources/js/system.js`  
 Файл отвечает за вызов системных классов, функций и переменных.  
 #### Глобальные переменные:  
  - `templateTriggers`: данный объект служит для быстрого изменения триггеров шаблона.
- 
+>[!WARNING]
+>Здесь проставляются все атрибуты-триггеры, которые необходимы для расстановки в шаблоне.
+>Меняя их в объявлении, так же необходимо изменить вызовы и в шаблоне.
+>Рекомендуется оставить по умолчанию, и использовать те, которые 
+>описаны в разделе [Триггеры](/dev/front/structure?id=Триггеры)
+
 ```javascript
 global.templateTriggers = {
     attributes: {
@@ -147,44 +152,128 @@ global.templateTriggers = {
     }
     
 };
-
 ```
 
->[!WARNING]
->Здесь проставляются все атрибуты-триггеры, которые необходимы для расстановки в шаблоне. Меняя их здесь, так же необходими их изменить в шаблоне.
->Можно оставить по умолчанию, и использовать те, которые будут описаны в разделе [Триггеры](/dev/front/structure?id=Триггеры)
+<!-- tabs:start -->
 
-#### Глобальные функции:
- - `sendStatistics`
- - `paginateDefault`
- - `productAction`
- - `changeCount`
- - `repeatOrder`
- - `callModal`
- - `formControllerInit`
-
-#### Вспомогательные функции:
- - `onOpenModal`
- - `onCloseModal`
-
-#### Вызываемые классы:
- - `UpdateTab`
- - `Filter`
- - `Checkout`
-
-
-Необходимо обратить внимание на то, что в системе предусмотрено 2 варианта вызова модуля:
- - непосредственно через управляющий атрибут `onclick`, `onchange`
- - через data-* атрибуты
- - вызом Класса в файле `system.js` 
+#### ** Глобальные функции: **
+Функции для корректной работы основных модулей
+- `sendStatistics`
+- `paginateDefault`
+- `productAction`
+- `changeCount`
+- `repeatOrder`
+- `formControllerInit`
  
-Это вызвано оптимизаций ответов сервера и обработкой этих ответов.  
-Таблица data-* атрибутов:
+#### ** Дополнительные функции: **
+Их можно не использовать, на основной функционал не влияют
+- `onOpenModal`
+- `onCloseModal`
+- `isDomainLink`
+- `phoneMask`
+- `loadAndResize`
+
+#### ** Вызываемые классы: **
+- `UpdateTab`
+- `Filter`
+- `Checkout`
+- `FormController`
+ 
+<!-- tabs:end -->
 
 
-Когда модуль вызывается первым методом, для него предусмотрена глобальная функция, которая задана в файле system.js
-Если же модуль вызывается вторым методом, значит он запущен через класс в файле  system.js
-Подробное описание метода вызова будет в каждом модуле.
+Необходимо обратить внимание на то, что в системе предусмотрено 3 варианта вызова модуля:
+ - непосредственно через управляющий атрибут `onclick`, `onchange`. Когда модуль вызывается
+ inline методом, для него предусмотрена глобальная функция, которая объявлена в файле system.js :
+```html
+<a href="/favorite" onclick="productAction(event, this, ID, 'post');"></a>
+```
+ - через data-* атрибуты, когда модуль вызывается таким методом - он инициализирован
+классом в файле system.js:
+ ```html
+<a href="request-url" data-filter="href" id="filter-item-{category}{item}"></a>
+```
+ - вызовом класса в файле `system.js`, но в данном случае, нет дополнительных требований по разметке
+ кроме как следовать всем стандартам спецификации **W3C**:
+```javascript
+window.site.checkout = new Checkout();
+```
+>[!NOTE]
+>Использование разных методов вызвано оптимизаций ответов сервера и обработкой этих ответов
+>для шаблонов без реактивных компонентов(Vue/React/Angular).  
+>Подробное описание методов и их возможностей описано для каждой функции и класса.
+
+
+### app.js - клиентский
+Расположение `resources/builder-resources/js/app.js`  
+Основное предназначение - кастомные отработки Front-End\`a
+которые могут понадобиться в проекте. Привет jQuery)  
+Также содержит зарезервированные функции:  
+
+- `callModal` - производит вызов модального окна с системных модулей. Вынесена отдельно чтобы исключить
+зависимости объемных библиотек и системы. Вы можете использовать абсолютно любую библиотеку с ее зависимостями.
+Примеры асинхронного объявления:
+
+<!-- tabs:start -->
+
+#### ** Fancybox + jQuery **
+```javascript
+global.callModal = async function (src) {
+    let type = 'html';
+    if (src.startsWith('#')){
+        type = 'inline';
+    }
+    return $.fancybox.open({
+        src: src,
+        type: type,
+        beforeShow: onOpenModal,
+        afterClose: onCloseModal
+    });
+};
+```
+
+#### ** lightGallery **
+```javascript
+global.callModal = async function (src) {
+    let gallery = null;
+    let options = {};
+    if (src.startsWith('#')){
+        gallery = document.getElementById(src);
+    } else {
+        document.body.insertAdjacentHTML('beforeend', `<div id="call-modal">${src}</div>`);
+        gallery = document.getElementById('call-modal');
+    }
+    gallery.addEventListener('onBeforeOpen', onOpenModal, false);
+    gallery.addEventListener('onBeforeClose', onCloseModal, false);
+    lightGallery(gallery, options); 
+    return gallery;
+};
+```
+
+#### ** Асинхронный Вызов **
+```javascript
+callModal(src).then(function(modal) {
+    console.log(modal);
+});
+```
+
+<!-- tabs:end -->
+
+- `onProductAction` - фукнция-заглушка для пост-обработки запросов от eCommerce.
+Вынесена в клиенсткий файл для быстрого доступа и манипуляций с DOM не предусмотренных системой.
+```javascript
+global.onProductAction = function (element, data, type, method, id) {
+    console.log(element, data, type, method, id);
+};
+```
+
+Параметр|Тип данных|Описание
+-| - | - 
+element|HTMLElement|Инициатор события
+data|JSON-Object|Response от сервера, регулируется Back-End\`ом
+type|string|Тип запроса на сервер, может быть 3 варианта: `cart`, `favorite`, `comparison`
+method|string/`false`|Метод отправки: `GET`, `POST`, `DELETE`. `False` - заглушка для тестирования.
+id|string/`null`|ID - eCommerce объекта
 
 
 ## Реализованные модули:

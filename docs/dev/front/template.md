@@ -125,7 +125,7 @@ npm run watch
 
 ## Настройка и конфигурация `webpack.mix.js`
 
-При необходимости, детальную документацию по laravel-mix можно найти на [оффициальном сайте](https://laravel.com/docs/6.x/mix).  
+Детальную документацию по laravel-mix можно найти на [оффициальном сайте](https://laravel.com/docs/6.x/mix).  
 Изменение конфигурации webpack производиться [методом laravel-mix](https://laravel.com/docs/6.x/mix#custom-webpack-configuration)
 и доступна на [оффициальном сайте](https://webpack.js.org/configuration/).
 
@@ -147,7 +147,7 @@ var arrayToExtract = [
 ];
 mix.extract(arrayToExtract);
 ```
-В резульстате работы медота в корень `./public/js` будет вынесено 2 файла:
+В резульстате вызова метода в директорию `./public/js` будет вынесено 2 файла:
  - manifest.js - служебный файл **webpack.js**
  - vendor.js - в файл выносятся все библиотеки которые прописаны в массиве `arrayToExtract`  
  
