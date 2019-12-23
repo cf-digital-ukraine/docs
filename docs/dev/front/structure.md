@@ -80,17 +80,36 @@
 ### system.js
 
 Расположение `resources/builder-resources/js/system.js`  
-Файл отвечает за вызов системных классов, функций и переменных.  
+Файл отвечает за вызов системных классов, функций и переменных.
+  
 #### Глобальные переменные:  
- - `templateTriggers`: данный объект служит для быстрого изменения триггеров шаблона.
- 
+
+`templateTriggers`: данный объект служит для быстрого изменения триггеров шаблона.
+Детальное описание каждого компонента и его применение описано в разделе [Реализованные-модули](/dev/front/structure?id=Реализованные-модули):
+* attributes
+     - [checkout](/dev/front/structure?id=checkout)
+     - [comparison](/dev/front/structure?id=checkout)
+     - [cart](/dev/front/structure?id=checkout)
+     - [favorite](/dev/front/structure?id=checkout)
+     - [filter](/dev/front/structure?id=checkout)
+     - [forms](/dev/front/structure?id=checkout)
+     - [pagination](/dev/front/structure?id=checkout)
+* [cookie](/dev/front/structure?id=checkout)
+
+
 ```javascript
 global.templateTriggers = {
     attributes: {
         checkout: {
-            delivery: '[data-checkout="delivery"]',
-            payments: '[data-checkout="payments"]',
-            deliveryPrice: '[data-delivery-price]'
+            delivery: {
+                trigger: 'data-checkout="delivery"',
+                template: 'select'
+            },
+            payments: {
+                trigger: 'data-checkout="payments"',
+                template: 'select'
+            },
+            deliveryPrice: 'data-delivery-price'
         },
         comparison: {
             link: 'data-comparison-link',
@@ -152,7 +171,6 @@ global.templateTriggers = {
 
 >[!WARNING]
 >Здесь проставляются все атрибуты-триггеры, которые необходимы для расстановки в шаблоне. Меняя их здесь, так же необходими их изменить в шаблоне.
->Можно оставить по умолчанию, и использовать те, которые будут описаны в разделе [Триггеры](/dev/front/structure?id=Триггеры)
 
 #### Глобальные функции:
  - `sendStatistics`
@@ -245,6 +263,53 @@ always|  **Function**  |-| CallBack функция, вызывается все�
 
 
 
+### Checkout
 
 
-## Триггеры
+<!-- tabs:start -->
+#### ** javascript **
+```javascript
+checkout: {
+    delivery: {
+        trigger: 'data-checkout="delivery"',
+        template: 'select'
+    },
+    payments: {
+        trigger: 'data-checkout="payments"',
+        template: 'select'
+    },
+    deliveryPrice: 'data-delivery-price'
+}
+```
+#### ** html **
+```html
+<select name="delivery" data-checkout="delivery">
+    <option data-placeholder="true" value="">Спосіб доставки*</option>
+    <option value="1" data-options="{'price': false, 'payments': '[1]'}">Самовывоз</option>
+    <option value="2" data-options="{'price': false, 'payments': '[1]'}">Новою Поштою</option>
+</select>
+```
+<!-- tabs:end -->
+
+
+Параметр|Тип данных|Обязательно|Описание
+-|-|:-:|-
+| |-| 
+| |-| 
+
+
+### ParseResponse
+
+Асинхронный класс прослойка между запросом и ответом сервера. Вызов только с файла *.js.
+По сути его вызывать кроме 2х мест(AxiosGet/AxiosPost), больше нигде не нужно, поскольку все запросы идут через эти классы и имеют функции
+обратного вызова `complete` и `fail`  
+
+```javascript
+new ParseResponse(response, initiator).then(() => {
+    //дополнительные обработки  ;
+});
+```
+Параметр|Тип данных|Обязательно|Описание
+-|-|:-:|-
+response|  **Object**  |+| Данныые полученные от сервера.
+initiator|  **HTMLElement**  |-| Необходим для манипуляций с елементом который инициировал запрос.
