@@ -929,7 +929,6 @@ code .token {
     min-height: 1.5rem
 }
 
-
 pre:after {
     color: #ccc;
     content: attr(data-lang);

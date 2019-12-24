@@ -40,4 +40,4 @@ if (mix.inProduction()) {
         }
     });
 }
-mix.styles("resources/app.css", "assets/css/docs.css");
+// mix.styles("resources/app.css", "assets/css/docs.css");
